@@ -1,10 +1,10 @@
 require("dotenv").config();
-const startBot = require("./config/bot-config.js");
+const { config_bot, client } = require("./config/bot-config.js");
 const express = require("express");
 
 const Bot_Token = process.env.TOKEN;
 
-startBot(Bot_Token);
+config_bot(Bot_Token);
 const app = express();
 
 app.get("/", (req, res) => {
