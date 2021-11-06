@@ -1,4 +1,5 @@
 const { client } = require("../config/bot-config.js");
+const { GUILD_TEXT } = require("../constants/channel_types.js");
 
 module.exports = {
   name: "interactionCreate",
@@ -6,6 +7,7 @@ module.exports = {
     console.log(
       `${interaction.user.tag} in #${interaction.channel.name} triggered an interaction.`
     );
+
     if (!interaction.isCommand()) return;
 
     const command = client.commands.get(interaction.commandName);
