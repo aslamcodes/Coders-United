@@ -14,6 +14,6 @@ function handleEvents(client) {
         client.on(event.name, (...args) => event.execute(...args));
       }
     });
-  console.log("Events Ready!");
+  console.log(`Events Ready! ✅`.yellow);
 }
 module.exports = handleEvents;

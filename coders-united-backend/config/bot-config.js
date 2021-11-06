@@ -2,7 +2,9 @@ const { Client, Collection, Intents } = require("discord.js");
 const handleEvents = require("./handleEvents");
 const handleCommands = require("./handleCommands");
 
-const client = new Client({ intents: ["GUILDS"] });
+const client = new Client({
+  intents: ["GUILDS", Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES],
+});
 
 function config_bot(token) {
   client.commands = new Collection();

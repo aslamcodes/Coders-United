@@ -10,7 +10,7 @@ function handleCommands(client) {
       client.commands.set(command.data.name, command);
     });
 
-  console.log("Commands Ready!");
+  console.log(`Commands Ready! ✅`.yellow);
 }
 
 module.exports = handleCommands;
