@@ -81,7 +81,7 @@ This is an example of how to list things you need to use the software and how to
    ```sh
    npm run post:install
    ```
-4. Enter your Token in `.env`
+4. Enter your Token in `.env` file
    ```js
    TOKEN = ENTER_YOUR_TOKEN;
    ```
@@ -112,8 +112,8 @@ To get the Server running
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-## License
+<!-- ## License -->
 
-Distributed under the MIT License. See `LICENSE.txt` for more information.
+<!-- Distributed under the MIT License. See `LICENSE.txt` for more information. -->
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+<!-- <p align="right">(<a href="#top">back to top</a>)</p> -->
