@@ -8,7 +8,7 @@
     "server": "nodemon coders-united-backend",
     "interface": "npm start --prefix coders-united-interface",
     "dev": "concurrently \"npm run server\" \"npm run interface\" ",
-    "post:install": "npm i && (cd coders-united-interface && npm i ); && (coders-united-backend && npm i);"
+    "post:install": "npm i && (cd coders-united-interface && npm i ) && (coders-united-backend && npm i )"
   },
   "repository": {
     "type": "git",
