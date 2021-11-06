@@ -13,7 +13,7 @@ function handleEvents(client) {
       } else {
         client.on(event.name, (...args) => event.execute(...args));
       }
-      console.log("Events Ready");
     });
+  console.log("Events Ready!");
 }
 module.exports = handleEvents;

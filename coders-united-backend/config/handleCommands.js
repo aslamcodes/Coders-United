@@ -10,7 +10,7 @@ function handleCommands(client) {
       client.commands.set(command.data.name, command);
     });
 
-  console.log("Commands added to the collections");
+  console.log("Commands Ready!");
 }
 
 module.exports = handleCommands;

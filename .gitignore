@@ -1,3 +1,4 @@
 coders-united-backend/node_modules
-coders-united-backend/.env
 coders-united-interface/node_modules
+.env
+node_modules

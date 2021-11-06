@@ -7,7 +7,7 @@ module.exports = {
       `${interaction.user.tag} in #${interaction.channel.name} triggered an interaction.`
     );
     if (!interaction.isCommand()) return;
-    console.log("From GGGGG");
+
     const command = client.commands.get(interaction.commandName);
 
     if (!command) return;
