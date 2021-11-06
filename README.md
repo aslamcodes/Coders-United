@@ -98,7 +98,7 @@ To get the project running Locally on your machine
 
 ## Running Them Separately
 
-To get the Server running
+To get the interface running
 
 ```sh
   npm run interface
