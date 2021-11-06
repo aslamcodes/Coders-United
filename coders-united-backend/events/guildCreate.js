@@ -1,8 +1,9 @@
 const { client } = require("../config/bot-config.js");
+const deploy_commands = require("../utils/depoy-commands.js");
 
 module.exports = {
   name: "guildCreate",
   async execute(interaction) {
-    console.log("New Server Subscribed");
+    deploy_commands(interaction.id);
   },
 };
