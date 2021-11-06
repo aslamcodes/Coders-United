@@ -1,13 +1,14 @@
 {
   "name": "coders-united",
   "version": "1.0.0",
-  "description": "A Discord Bor for Maintaining Coders United Discord Server",
+  "description": "A Discord Bot for Maintaining Coders United Discord Server",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "nodemon coders-united-backend",
     "interface": "npm start --prefix coders-united-interface",
-    "dev": "concurrently \"npm run server\" \"npm run interface\" "
+    "dev": "concurrently \"npm run server\" \"npm run interface\" ",
+    "install": "npm i && npm i --prefix coders-united-interface && npm i --prefix coders-united-backend"
   },
   "repository": {
     "type": "git",
