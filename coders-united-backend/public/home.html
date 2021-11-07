@@ -9,8 +9,9 @@
     <link rel="stylesheet" href="./home.css" />
   </head>
   <body>
-    <h2>Routes</h2>
-
+    <!-- Bot Related Routes -->
+    <h3>Bot Related Routes</h3>
+    <p>Channel Routes</p>
     <table class="table table-striped table-dark">
       <thead>
         <tr>
@@ -29,12 +30,42 @@
         </tr>
         <tr>
           <th scope="row">POST /channels</th>
-          <td>Fetch channels of the Server</td>
+          <td>Send a message to channel by ID</td>
           <td>channelId, message</td>
           <td>Private</td>
         </tr>
       </tbody>
     </table>
+
+    <hr class="my-4" />
+    <!-- <h1>Client Related Routes</h1> -->
+    <h3>Client Related Routes</h3>
+    <p>User Routes</p>
+    <table class="table table-striped table-dark">
+      <thead>
+        <tr>
+          <th scope="col">Route</th>
+          <th scope="col">Desc</th>
+          <th scope="col">Param</th>
+          <th scope="col">Access</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">POST /users/register</th>
+          <td>Register a new user</td>
+          <td>name, email, password</td>
+          <td>Public</td>
+        </tr>
+        <tr>
+          <th scope="row">POST /users/login</th>
+          <td>Send a message to channel by ID</td>
+          <td>email, password</td>
+          <td>Public</td>
+        </tr>
+      </tbody>
+    </table>
+    <i>These routes will return a jwt token for authentication</i>
   </body>
   <script src="./bootstrap.min.js"></script>
 </html>
