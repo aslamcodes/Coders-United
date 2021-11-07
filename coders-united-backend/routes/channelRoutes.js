@@ -3,10 +3,11 @@ const {
   getChannels,
   sendMessageToChannel,
 } = require("../controllers/channelControllers");
+const { protect } = require("../middleware/authMiddleware");
 
 const router = express.Router();
 
-router.route("/").get(getChannels).post(sendMessageToChannel);
+router.route("/").get(protect, getChannels).post(protect, sendMessageToChannel);
 
 module.exports = {
   channelRouter: router,
