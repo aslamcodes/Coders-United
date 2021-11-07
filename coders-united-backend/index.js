@@ -26,12 +26,12 @@ app.use(express.json());
 app.use("/channels", channelRouter);
 app.use("/users", userRouter);
 
-app.use(notFound);
-app.use(errorHandler);
-
 app.get("/", (req, res) => {
   res.sendFile(path.resolve(__dirname, "./public/home.html"));
 });
+
+app.use(notFound);
+app.use(errorHandler);
 
 app.listen(process.env.PORT || 3001, () => {
   console.log(

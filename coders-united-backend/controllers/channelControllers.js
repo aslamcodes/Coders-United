@@ -1,6 +1,5 @@
 const Channel = require("../models/Channel");
 const asyncHandler = require("express-async-handler");
-const client = require("..");
 // @desc Fetch all channels
 // @route GET /channels
 // @access private
@@ -13,12 +12,13 @@ const getChannels = asyncHandler(async (req, res) => {
 // @route POST /channels
 // @access private
 // @param message:string, channelId:string
-function sendMessageToChannel(req, res) {
+const sendMessageToChannel = asyncHandler(async (req, res) => {
   const { message, channelId } = req.body;
-  console.log(message, channelId);
-
+  const client = require("..");
+  const channel = client.channels.cache.get(channelId);
+  channel.send(message);
   res.send("Posting a Message");
-}
+});
 
 module.exports = {
   getChannels,
