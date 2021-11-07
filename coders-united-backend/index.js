@@ -7,7 +7,7 @@ const { Client, Intents } = require("discord.js");
 const { channelRouter } = require("./routes/channelRoutes");
 const { userRouter } = require("./routes/userRoutes");
 const { config_db } = require("./config/db-config");
-
+const { errorHandler, notFound } = require("./middleware/errorMiddleware");
 const client = new Client({
   intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES],
 });
@@ -25,6 +25,9 @@ app.use(express.json());
 
 app.use("/channels", channelRouter);
 app.use("/users", userRouter);
+
+app.use(notFound);
+app.use(errorHandler);
 
 app.get("/", (req, res) => {
   res.sendFile(path.resolve(__dirname, "./public/home.html"));
