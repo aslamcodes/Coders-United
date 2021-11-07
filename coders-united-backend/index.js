@@ -24,9 +24,9 @@ app.get("/", (req, res) => {
 
 app.use("/channels", channelRouter);
 
-app.listen(process.env.PORT || 5050, () => {
+app.listen(process.env.PORT || 3001, () => {
   console.log(
-    `Server Listening at ${process.env.PORT || 5050} on ${
+    `Server Listening at ${process.env.PORT || 3001} on ${
       process.env.NODE_ENV
     } mode`.black.bgWhite.bold
   );
