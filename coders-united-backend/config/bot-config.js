@@ -1,4 +1,5 @@
 const { Collection } = require("discord.js");
+const colors = require("colors");
 const handleEvents = require("./handleEvents");
 const handleCommands = require("./handleCommands");
 

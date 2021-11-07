@@ -5,14 +5,17 @@ const express = require("express");
 const { config_bot } = require("./config/bot-config");
 const { Client, Intents } = require("discord.js");
 const { channelRouter } = require("./routes/channelRoutes");
+const { config_db } = require("./config/db-config");
 
 const client = new Client({
   intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES],
 });
 
 const Bot_Token = process.env.TOKEN;
+const DB_URI = process.env.MONGO_URI;
 
 config_bot(Bot_Token, client);
+config_db(DB_URI);
 
 const app = express();
 app.use(express.static(path.resolve(__dirname, "./public")));

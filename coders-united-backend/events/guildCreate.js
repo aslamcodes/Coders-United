@@ -8,7 +8,7 @@ module.exports = {
   async execute(interaction) {
     deploy_commands(interaction.id);
     fs.writeFileSync(
-      path.resolve(__dirname, "../data/db.json"),
+      path.resolve(__dirname, "../data/channels.json"),
       JSON.stringify({
         "Text Channels": interaction.channels.cache.filter(
           (channel) => channel.type === GUILD_TEXT
