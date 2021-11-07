@@ -5,6 +5,7 @@ const express = require("express");
 const { config_bot } = require("./config/bot-config");
 const { Client, Intents } = require("discord.js");
 const { channelRouter } = require("./routes/channelRoutes");
+const { userRouter } = require("./routes/userRoutes");
 const { config_db } = require("./config/db-config");
 
 const client = new Client({
@@ -18,14 +19,16 @@ config_bot(Bot_Token, client);
 config_db(DB_URI);
 
 const app = express();
+
 app.use(express.static(path.resolve(__dirname, "./public")));
 app.use(express.json());
+
+app.use("/channels", channelRouter);
+app.use("/users", userRouter);
 
 app.get("/", (req, res) => {
   res.sendFile(path.resolve(__dirname, "./public/home.html"));
 });
-
-app.use("/channels", channelRouter);
 
 app.listen(process.env.PORT || 3001, () => {
   console.log(
