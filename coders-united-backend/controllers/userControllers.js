@@ -1,6 +1,6 @@
+const bcrypt = require("bcryptjs");
 const { generateToken } = require("../utils/authorization");
 const User = require("../models/User");
-const bcrypt = require("bcryptjs");
 const asyncHandler = require("express-async-handler");
 
 // @desc Register User

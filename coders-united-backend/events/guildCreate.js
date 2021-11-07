@@ -20,7 +20,7 @@ module.exports = {
           guildId: channel.guildId,
         };
       });
-
+    await Channel.deleteMany();
     await Channel.insertMany(channels);
   },
 };
