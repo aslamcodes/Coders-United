@@ -1,17 +1,23 @@
 require("dotenv").config();
 require("colors");
-
-const { config_bot, client } = require("./config/bot-config.js");
+const path = require("path");
 const express = require("express");
+const { config_bot } = require("./config/bot-config");
+const { Client, Intents } = require("discord.js");
+
+const client = new Client({
+  intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES],
+});
 
 const Bot_Token = process.env.TOKEN;
 
-config_bot(Bot_Token);
+config_bot(Bot_Token, client);
 
 const app = express();
+app.use(express.static(path.resolve(__dirname, "./public")));
 
 app.get("/", (req, res) => {
-  res.send("Api Runs...");
+  res.sendFile(path.resolve(__dirname, "./public/home.html"));
 });
 
 app.listen(process.env.PORT || 5050, () => {
@@ -21,3 +27,5 @@ app.listen(process.env.PORT || 5050, () => {
     } mode`.black.bgWhite.bold
   );
 });
+
+module.exports = client;

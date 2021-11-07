@@ -1,5 +1,4 @@
-const { client } = require("../config/bot-config.js");
-const { GUILD_TEXT } = require("../constants/channel_types.js");
+const client = require("../index.js");
 
 module.exports = {
   name: "interactionCreate",

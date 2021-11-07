@@ -1,17 +1,12 @@
-const { Client, Collection, Intents } = require("discord.js");
+const { Collection } = require("discord.js");
 const handleEvents = require("./handleEvents");
 const handleCommands = require("./handleCommands");
 
-const client = new Client({
-  intents: ["GUILDS", Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES],
-});
-
-function config_bot(token) {
+function config_bot(token, client) {
   client.commands = new Collection();
-
   handleCommands(client);
   handleEvents(client);
   client.login(token);
 }
 
-module.exports = { config_bot, client };
+module.exports = { config_bot };
