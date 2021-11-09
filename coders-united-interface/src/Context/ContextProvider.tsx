@@ -1,5 +1,5 @@
-import { AuthProvider } from "./AuthContext";
+import { AuthContextProvider } from "./Authentication/AuthContext";
 
 export const ContextProvider = ({ children }) => {
-  return <AuthProvider>{children}</AuthProvider>;
+  return <AuthContextProvider>{children}</AuthContextProvider>;
 };
