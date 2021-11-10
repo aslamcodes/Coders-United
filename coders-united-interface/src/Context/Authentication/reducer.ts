@@ -2,8 +2,6 @@ import { LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS } from "./constants";
 
 export const initialState = {
   user: null,
-  token: null,
-  isAuthenticated: false,
   isLoading: false,
   errorMessage: null,
 };
@@ -20,22 +18,20 @@ export const AuthReducer = (state = initialState, action) => {
       return {
         ...state,
         isLoading: false,
-        user: action.payload.user,
-        token: action.payload.token,
+        user: action.payload,
       };
 
     case LOGIN_FAILURE:
       return {
         ...state,
         isLoading: false,
-        errorMessage: action.payload.errorMessage,
+        errorMessage: action.payload,
       };
 
     case "LOGOUT":
       return {
         ...state,
         user: "",
-        token: "",
       };
 
     default:
