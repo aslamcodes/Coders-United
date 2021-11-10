@@ -10,20 +10,21 @@ export const AuthReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOGIN_REQUEST:
       return {
-        ...state,
         isLoading: true,
+        user: null,
+        errorMessage: null,
       };
 
     case LOGIN_SUCCESS:
       return {
-        ...state,
         isLoading: false,
         user: action.payload,
+        errorMessage: null,
       };
 
     case LOGIN_FAILURE:
       return {
-        ...state,
+        user: null,
         isLoading: false,
         errorMessage: action.payload,
       };
