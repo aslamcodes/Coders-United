@@ -1,7 +1,7 @@
 import { LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS } from "./constants";
 
 export const initialState = {
-  user: null,
+  user: JSON.parse(localStorage.getItem("userInfo")) || null,
   isLoading: false,
   errorMessage: null,
 };
