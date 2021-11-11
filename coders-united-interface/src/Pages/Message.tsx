@@ -1,5 +1,6 @@
 import React from "react";
 import { Navigate, useLocation } from "react-router-dom";
+import { SendMessageForm } from "../Components/SendMessageForm";
 import { logout } from "../Context/Authentication/action";
 import {
   useAuthContext as useAuth,
@@ -21,7 +22,7 @@ export const Message = () => {
 
   return (
     <div>
-      Send Message Form
+      <SendMessageForm />
       <button onClick={logoutHandler}>Logout</button>
     </div>
   );
