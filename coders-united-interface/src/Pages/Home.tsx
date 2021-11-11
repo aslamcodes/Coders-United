@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 
 export const Home = () => {
@@ -8,7 +7,7 @@ export const Home = () => {
       <Link to="/send-message">
         <p>Send Message Page</p>
       </Link>
-      <Link to="/Login">
+      <Link to="/login">
         <p>Login Page</p>
       </Link>
     </div>
