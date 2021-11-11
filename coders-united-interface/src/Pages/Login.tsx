@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useLocation, useNavigate, Navigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { loginUser } from "../Context/Authentication/action";
 import { useAuthDispatch } from "../Context/Authentication/AuthContext";
 
@@ -13,12 +13,9 @@ export const Login = () => {
 
   const from = location.state?.from?.pathname || "/";
 
-  console.log({ navigate, location });
-
-  const onSubmitHandler = (e) => {
-    console.log(email, password);
+  const onSubmitHandler = async (e) => {
     e.preventDefault();
-    loginUser(dispatch, { email, password });
+    await loginUser(dispatch, { email, password });
     navigate(from, { replace: true });
   };
 
@@ -28,17 +25,13 @@ export const Login = () => {
       <input
         value={email}
         type="email"
-        onChange={(e) => {
-          setEmail(e.target.value);
-        }}
+        onChange={(e) => setEmail(e.target.value)}
       />
       <label>Password</label>
       <input
         value={password}
         type="password"
-        onChange={(e) => {
-          setPassword(e.target.value);
-        }}
+        onChange={(e) => setPassword(e.target.value)}
       />
       <button type="submit">Login</button>
     </form>
