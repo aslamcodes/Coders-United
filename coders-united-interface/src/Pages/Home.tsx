@@ -13,6 +13,13 @@ export const Home = () => {
       <Link to="/login">
         <p>Login Page</p>
       </Link>
+      <a
+        rel="noreferrer"
+        target="_blank"
+        href="https://discord.com/oauth2/authorize?client_id=859485926404390962&permissions=8&redirect_uri=https%3A%2F%2Flocalhost%3A3001%2Fauth%2Fredirect&scope=bot%20applications.commands"
+      >
+        Invite
+      </a>
     </div>
   );
 };
