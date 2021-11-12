@@ -9,12 +9,9 @@ const { protect } = require("../middleware/authMiddleware");
 
 const router = express.Router();
 
-router
-  .route("/")
-  .get(protect, getChannels)
-  .post(protect, sendMessageToChannel)
-  .put(protect, sendEmbedToChannel);
+router.route("/").get(protect, getChannels).post(protect, sendMessageToChannel);
 router.route("/embed").post(protect, sendEmbedToChannel);
+
 module.exports = {
   channelRouter: router,
 };

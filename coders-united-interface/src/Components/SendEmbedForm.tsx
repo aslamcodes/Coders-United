@@ -17,14 +17,13 @@ export const SendEmbedForm = () => {
   const [selectedChannel, setSelectedChannel] = useState();
   const { user } = useAuthContext();
   const onSelectedChannelChangeHandler = (e) => {
-    console.log(e.target.value);
     setSelectedChannel(e.target.value);
   };
   const onSubmitHandler = async (e) => {
     e.preventDefault();
     await sendEmbed({
-      method: "PUT",
-      url: "/channels/",
+      method: "POST",
+      url: "/channels/embed",
       headers: {
         "Content-Type": "application/json",
         Authorization: "Bearer " + user.token,
