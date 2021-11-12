@@ -2,11 +2,11 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useAuthContext } from "../Context/Authentication/AuthContext";
 import { useAxiosWithCallback } from "../hooks/useAxiosWithCallback";
+import useChannels from "../hooks/useChannels";
 
 export const SendMessageForm = () => {
-  const { isLoading, fetchData: fetch, error } = useAxiosWithCallback();
+  const { isLoading, channels, error } = useChannels();
   const [message, setMessage] = useState("");
-  const [channels, setChannels] = useState([]);
   const [selectedChannel, setSelectedChannel] = useState("");
   const {
     isLoading: sending,
@@ -14,24 +14,6 @@ export const SendMessageForm = () => {
     fetchData: sendMessage,
   } = useAxiosWithCallback();
   const { user } = useAuthContext();
-
-  useEffect(() => {
-    const applyChannels = (channels) => {
-      setChannels(channels);
-    };
-    const fetchChannels = async () => {
-      await fetch(
-        {
-          url: "/channels",
-          headers: {
-            Authorization: "Bearer " + user.token,
-          },
-        },
-        applyChannels
-      );
-    };
-    fetchChannels();
-  }, [user, fetch]);
 
   if (isLoading) {
     return <p>Loading</p>;
