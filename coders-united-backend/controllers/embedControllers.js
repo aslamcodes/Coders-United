@@ -6,20 +6,20 @@ const asyncHandler = require("express-async-handler");
 // @access private
 // @param embed:object, channelId:string
 const sendEmbedToChannel = asyncHandler(async (req, res) => {
-  const { channelId } = req.body;
+  const {  channelId, embed } = req.body;
   const client = require("..");
   const channel = client.channels.cache.get(channelId);
 
   const Embed = new MessageEmbed()
     .setColor("#0099ff")
-    .setTitle("Some title")
-    .setURL("https://discord.js.org/")
+    .setTitle(embed.title)
+    .setURL(embed.url)
     .setAuthor(
-      "Some name",
+      embed.authorName,
       "https://i.imgur.com/AfFp7pu.png",
-      "https://discord.js.org"
+      embed.authorUrl
     )
-    .setDescription("Some description here")
+    .setDescription(embed.description)
     .setThumbnail("https://i.imgur.com/AfFp7pu.png")
     .addFields(
       { name: "Regular field title", value: "Some value here" },
