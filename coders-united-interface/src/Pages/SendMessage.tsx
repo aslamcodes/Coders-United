@@ -7,14 +7,8 @@ import {
   useAuthDispatch as useDispatch,
 } from "../Context/Authentication/AuthContext";
 
-export const Message = () => {
-  const { user } = useAuth();
+export const SendMessage = () => {
   const dispatch = useDispatch();
-  const location = useLocation();
-
-  if (!user) {
-    return <Navigate to="/login" state={{ from: location }} />;
-  }
 
   const logoutHandler = () => {
     logout(dispatch);
