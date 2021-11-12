@@ -1,29 +1,36 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useAuthContext } from "../Context/Authentication/AuthContext";
-import { useAxios } from "../hooks/useAxios";
+import { useAxiosWithCallback } from "../hooks/useAxiosWithCallback";
 
 export const SendMessageForm = () => {
-  const { isLoading, fetchData: fetch, error } = useAxios();
+  const { isLoading, fetchData: fetch, error } = useAxiosWithCallback();
   const [message, setMessage] = useState("");
   const [channels, setChannels] = useState([]);
   const [selectedChannel, setSelectedChannel] = useState("");
-
+  const {
+    isLoading: sending,
+    error: sendError,
+    fetchData: sendMessage,
+  } = useAxiosWithCallback();
   const { user } = useAuthContext();
 
   useEffect(() => {
     const applyChannels = (channels) => {
       setChannels(channels);
     };
-    fetch(
-      {
-        url: "/channels",
-        headers: {
-          Authorization: "Bearer " + user.token,
+    const fetchChannels = async () => {
+      await fetch(
+        {
+          url: "/channels",
+          headers: {
+            Authorization: "Bearer " + user.token,
+          },
         },
-      },
-      applyChannels
-    );
+        applyChannels
+      );
+    };
+    fetchChannels();
   }, [fetch]);
 
   if (isLoading) {
@@ -36,20 +43,20 @@ export const SendMessageForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      await axios.post(
-        "/channels",
-        { message, channelId: selectedChannel },
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + user.token,
-          },
-        }
-      );
-    } catch (error) {
-      console.log(error);
-    }
+
+    await sendMessage({
+      url: "/channels",
+      method: "POST",
+      data: {
+        message,
+        channelId: selectedChannel,
+      },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + user.token,
+      },
+    });
+    setMessage("");
   };
 
   const onMessageChangeHandler = (e) => {
@@ -81,7 +88,8 @@ export const SendMessageForm = () => {
           );
         })}
       </select>
-      <button type="submit">Send Message</button>
+      {!sending ? <button type="submit">Send Message</button> : <p>Sending</p>}
+      {!sendError && <p>Message not sent</p>}
     </form>
   );
 };
