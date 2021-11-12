@@ -31,7 +31,7 @@ export const SendMessageForm = () => {
       );
     };
     fetchChannels();
-  }, [fetch]);
+  }, [user, fetch]);
 
   if (isLoading) {
     return <p>Loading</p>;
