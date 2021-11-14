@@ -1,6 +1,7 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import "./App.css";
-import { RequireAuth } from "./Components/RequireAuth";
+import { RequireAuth } from "./Components/Auth/RequireAuth";
+import { Navbar } from "./Components/UI/Navbar";
 import { Home } from "./Pages";
 import { Login } from "./Pages/Login";
 import { SendEmbed } from "./Pages/SendEmbed";
@@ -9,6 +10,7 @@ import { SendMessage } from "./Pages/SendMessage";
 function App() {
   return (
     <Router>
+      <Navbar />
       <Routes>
         <Route element={<RequireAuth />}>
           <Route path="/admin/send-message" element={<SendMessage />} />

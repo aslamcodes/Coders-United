@@ -2,9 +2,23 @@
   display: flex;
   position: fixed;
   justify-content: space-between;
-
+  align-items: center;
+  background-color: #36393f;
+  color: white;
   top: 0;
   left: 0;
   right: 0;
-  padding: 50px;
+}
+
+.navbar > div {
+  margin: 0 30px;
+  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar .logo {
+  width: 50px;
+  padding-right:5px;
 }
