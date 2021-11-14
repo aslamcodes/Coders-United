@@ -1,6 +1,6 @@
 import React from "react";
 import { Navigate, useLocation } from "react-router-dom";
-import { SendMessageForm } from "../Components/SendMessageForm";
+import { SendMessageForm } from "../Components/UI/SendMessageForm";
 import { logout } from "../Context/Authentication/action";
 import {
   useAuthContext as useAuth,

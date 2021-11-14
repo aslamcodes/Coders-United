@@ -1,7 +1,7 @@
-import React, { useState, useReducer} from "react";
-import { useAuthContext } from "../Context/Authentication/AuthContext";
-import { useAxiosWithCallback } from "../hooks/useAxiosWithCallback";
-import useChannels from "../hooks/useChannels";
+import React, { useState, useReducer } from "react";
+import { useAuthContext } from "../../Context/Authentication/AuthContext";
+import { useAxiosWithCallback } from "../../hooks/useAxiosWithCallback";
+import useChannels from "../../hooks/useChannels";
 
 const embedInitialState = {
   title: "",
@@ -9,27 +9,27 @@ const embedInitialState = {
   url: "",
   authorName: "",
   authorUrl: "",
-  contentText: ""
-}
+  contentText: "",
+};
 
-const embedReducer= (state, action) => {
-  switch(action.type){
+const embedReducer = (state, action) => {
+  switch (action.type) {
     case "SET_TITLE":
-      return {...state, title: action.payload};
+      return { ...state, title: action.payload };
     case "SET_DESCRIPTION":
-      return {...state, description: action.payload};
+      return { ...state, description: action.payload };
     case "SET_URL":
-      return {...state, url: action.payload};
+      return { ...state, url: action.payload };
     case "SET_AUTHOR_NAME":
-      return {...state, authorName: action.payload};
+      return { ...state, authorName: action.payload };
     case "SET_AUTHOR_URL":
-      return {...state, authorUrl: action.payload};
-    case "SET_CONTENT_TEXT": 
-      return {...state, contentText: action.payload};
+      return { ...state, authorUrl: action.payload };
+    case "SET_CONTENT_TEXT":
+      return { ...state, contentText: action.payload };
     default:
       break;
   }
-}
+};
 
 export const SendEmbedForm = () => {
   const {
@@ -70,27 +70,26 @@ export const SendEmbedForm = () => {
     });
   };
 
-  const [embedItems, dispatch] =useReducer(embedReducer, embedInitialState);
+  const [embedItems, dispatch] = useReducer(embedReducer, embedInitialState);
 
   const onTitleChangeHandler = (e) => {
-    dispatch({type: "SET_TITLE", payload: e.target.value});
-  }
+    dispatch({ type: "SET_TITLE", payload: e.target.value });
+  };
   const onDescriptionChangeHandler = (e) => {
-    dispatch({type: "SET_DESCRIPTION", payload: e.target.value});
-  }
+    dispatch({ type: "SET_DESCRIPTION", payload: e.target.value });
+  };
   const onUrlChangeHandler = (e) => {
-    dispatch({type: "SET_URL", payload: e.target.value});
-  }
+    dispatch({ type: "SET_URL", payload: e.target.value });
+  };
   const onAuthorNameChangeHandler = (e) => {
-    dispatch({type: "SET_AUTHOR_NAME", payload: e.target.value});
-  }
+    dispatch({ type: "SET_AUTHOR_NAME", payload: e.target.value });
+  };
   const onAuthorUrlChangeHandler = (e) => {
-    dispatch({type: "SET_AUTHOR_URL", payload: e.target.value});
-  }
+    dispatch({ type: "SET_AUTHOR_URL", payload: e.target.value });
+  };
   const onContentTextChangeHandler = (e) => {
-    dispatch({type: "SET_CONTENT_TEXT", payload: e.target.value});
-  }
-
+    dispatch({ type: "SET_CONTENT_TEXT", payload: e.target.value });
+  };
 
   return (
     <form onSubmit={onSubmitHandler}>
@@ -110,7 +109,12 @@ export const SendEmbedForm = () => {
           </div>
           <div className="embed-item">
             <h4>DESCRIPTION</h4>
-            <input type="text" onChange={onDescriptionChangeHandler} placeholder="insert a short description" value={embedItems.description}/>
+            <input
+              type="text"
+              onChange={onDescriptionChangeHandler}
+              placeholder="insert a short description"
+              value={embedItems.description}
+            />
           </div>
           <div className="embed-item">
             <h4>EMBED</h4>
@@ -128,26 +132,50 @@ export const SendEmbedForm = () => {
               </div>
               <div className="embed-author-item">
                 <h6>Author name</h6>
-                <input type="text" onChange={onAuthorNameChangeHandler} placeholder="Author name" value={embedItems.authorName}/>
+                <input
+                  type="text"
+                  onChange={onAuthorNameChangeHandler}
+                  placeholder="Author name"
+                  value={embedItems.authorName}
+                />
               </div>
               <div className="embed-author-item">
                 <h6>Author url</h6>
-                <input type="url" onChange={onAuthorUrlChangeHandler} placeholder="Author url" value={embedItems.authorUrl}/>
+                <input
+                  type="url"
+                  onChange={onAuthorUrlChangeHandler}
+                  placeholder="Author url"
+                  value={embedItems.authorUrl}
+                />
               </div>
             </div>
 
             <div className="embed-title">
               <div className="embed-title-item">
                 <h6>Title text</h6>
-                <input type="text" onChange={onTitleChangeHandler} placeholder="Title text" value={embedItems.title}/>
+                <input
+                  type="text"
+                  onChange={onTitleChangeHandler}
+                  placeholder="Title text"
+                  value={embedItems.title}
+                />
               </div>
               <div className="embed-title-item">
                 <h6>Title url</h6>
-                <input type="text" onChange={onUrlChangeHandler} placeholder="Title url" value={embedItems.url}/>
+                <input
+                  type="text"
+                  onChange={onUrlChangeHandler}
+                  placeholder="Title url"
+                  value={embedItems.url}
+                />
               </div>
               <div className="embed-title-item">
                 <h6>Content text</h6>
-                <textarea name="embed-content-text" onChange={onContentTextChangeHandler} value={embedItems.contentText}></textarea>
+                <textarea
+                  name="embed-content-text"
+                  onChange={onContentTextChangeHandler}
+                  value={embedItems.contentText}
+                ></textarea>
               </div>
             </div>
           </div>

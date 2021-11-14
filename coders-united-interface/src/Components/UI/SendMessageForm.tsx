@@ -1,8 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useAuthContext } from "../Context/Authentication/AuthContext";
-import { useAxiosWithCallback } from "../hooks/useAxiosWithCallback";
-import useChannels from "../hooks/useChannels";
+import { useAuthContext } from "../../Context/Authentication/AuthContext";
+import { useAxiosWithCallback } from "../../hooks/useAxiosWithCallback";
+import useChannels from "../../hooks/useChannels";
 
 export const SendMessageForm = () => {
   const { isLoading, channels, error } = useChannels();

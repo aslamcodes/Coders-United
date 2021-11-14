@@ -1,5 +1,5 @@
 import React from "react";
-import { SendEmbedForm } from "../Components/SendEmbedForm";
+import { SendEmbedForm } from "../Components/UI/SendEmbedForm";
 
 export const SendEmbed = () => {
   return (
