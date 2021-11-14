@@ -1,0 +1,19 @@
+.card {
+  background-color: #36393f;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 30px;
+  border-radius: 20px;
+  transition: all 0.3s ease-in-out;
+}
+
+.card .title {
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.card img {
+  width: 80%;
+  margin: 0 auto;
+}
