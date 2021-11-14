@@ -1,23 +1,37 @@
 import { Link } from "react-router-dom";
+import { Card } from "../Components/Helpers/Card";
+import styles from "./Home.module.css";
+
+const HOMEPAGECARDS = [
+  // { href: "admin/send-message", title: "Send a message", isProtected: true },
+  // {
+  //   href: "admin/send-embed",
+  //   title: "Embeds",
+  //   image: "/icons/embed.svg",
+  //   desc: "Send embeds to the server",
+  // },
+  {
+    href: "contribute",
+    title: "Contribute",
+    image: "/icons/contribute.svg",
+    desc: "Send articles and stuffs useful to the communities",
+  },
+  {
+    href: "stats",
+    title: "Stats",
+    image: "/icons/stats.svg",
+    desc: "See how the server is going, trend and informations",
+  },
+];
+
 export const Home = () => {
   return (
-    <div>
-      <Link to="admin/send-message">
-        <p>Send Message Page</p>
-      </Link>
-      <Link to="admin/send-embed">
-        <p>Send Embed form Page</p>
-      </Link>
-      <Link to="/login">
-        <p>Login Page</p>
-      </Link>
-      <a
-        rel="noreferrer"
-        target="_blank"
-        href="https://discord.com/oauth2/authorize?client_id=859485926404390962&permissions=8&redirect_uri=https%3A%2F%2Flocalhost%3A3001%2Fauth%2Fredirect&scope=bot%20applications.commands"
-      >
-        Invite
-      </a>
+    <div className={styles.cards}>
+      {HOMEPAGECARDS.map(({ href, title, image, desc }) => (
+        <Link key={href} to={href}>
+          <Card title={title} icon={image} desc={desc} />
+        </Link>
+      ))}
     </div>
   );
 };
