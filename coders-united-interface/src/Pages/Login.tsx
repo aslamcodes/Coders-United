@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { Button } from "../Components/UI/Button";
 import { loginUser } from "../Context/Authentication/action";
 import { useAuthDispatch } from "../Context/Authentication/AuthContext";
+import { Form } from "../Components/UI/Form";
 
 export const Login = () => {
   const [email, setEmail] = useState("");
@@ -20,20 +22,30 @@ export const Login = () => {
   };
 
   return (
-    <form onSubmit={onSubmitHandler}>
-      <label>Email</label>
-      <input
-        value={email}
-        type="email"
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <label>Password</label>
-      <input
-        value={password}
-        type="password"
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <button type="submit">Login</button>
-    </form>
+    <Form onSubmit={onSubmitHandler}>
+      <Form.Group>
+        <Form.Label>Email</Form.Label>
+        <Form.Input
+          id="email"
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+      </Form.Group>
+      <Form.Group>
+        <Form.Label>Password</Form.Label>
+        <Form.Input
+          id="password"
+          value={password}
+          type="password"
+          onChange={(e) => setPassword(e.target.value)}
+        />
+      </Form.Group>
+      <Form.Group>
+        <Button style={{ width: "100%" }} type="submit">
+          Login
+        </Button>
+      </Form.Group>
+    </Form>
   );
 };
