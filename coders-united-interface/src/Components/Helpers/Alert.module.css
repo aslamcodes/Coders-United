@@ -1,0 +1,17 @@
+.alert {
+  padding: 15px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-self: center;
+  width: 40vw;
+  margin: 0 auto;
+}
+
+.alert img {
+  padding: 0 10px;
+}
+.alert p {
+  flex-grow: 1;
+  font-size: 18px;
+}
