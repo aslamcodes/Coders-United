@@ -1,8 +1,9 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useAuthContext } from "../../Context/Authentication/AuthContext";
 import { useAxiosWithCallback } from "../../hooks/useAxiosWithCallback";
 import useChannels from "../../hooks/useChannels";
+import { Button } from "./Button";
+import Form from "./Form";
 
 export const SendMessageForm = () => {
   const { isLoading, channels, error } = useChannels();
@@ -23,9 +24,22 @@ export const SendMessageForm = () => {
     return <p>Something went wrong</p>;
   }
 
+  const channelsOption = channels.map(({ id, name }, idx) => {
+    return (
+      <Form.Option key={`id-${id}${name}${idx}`} value={id}>
+        {name}
+      </Form.Option>
+    );
+  });
+
+  channelsOption.unshift(
+    <option value="" disabled selected hidden>
+      select food
+    </option>
+  );
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     await sendMessage({
       url: "/channels",
       method: "POST",
@@ -50,28 +64,41 @@ export const SendMessageForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h1>Send a message to the Server</h1>
-      <label htmlFor="message">Your Message</label>
-      <input
-        id="message"
-        type="text"
-        placeholder="Wassup? Bois"
-        value={message}
-        onChange={onMessageChangeHandler}
-      />
-      <label htmlFor="channel">Select the channel</label>
-      <select id="channel" onChange={onSelectedChannelChangeHandler}>
-        {channels.map(({ id, name }, idx) => {
-          return (
-            <option key={`id-${id}${name}${idx}`} value={id}>
-              {name}
-            </option>
-          );
-        })}
-      </select>
-      {!sending ? <button type="submit">Send Message</button> : <p>Sending</p>}
-      {!sendError && <p>Message not sent</p>}
-    </form>
+    <Form onSubmit={handleSubmit}>
+      <Form.Title>Send a message</Form.Title>
+      <Form.Group>
+        <Form.Label htmlFor="message">Your Message</Form.Label>
+        <Form.Input
+          id="message"
+          type="text"
+          placeholder="Wassup? Bois"
+          value={message}
+          onChange={onMessageChangeHandler}
+        />
+      </Form.Group>
+      <Form.Group>
+        <Form.Label htmlFor="channel">Select the channel</Form.Label>
+        <Form.Select id="channel" onChange={onSelectedChannelChangeHandler}>
+          {getChannelOptions(channels)}
+        </Form.Select>
+      </Form.Group>
+      {!sending ? <Button type="submit">Send Message</Button> : <p>Sending</p>}
+    </Form>
   );
+};
+
+const getChannelOptions = (channels) => {
+  const channelsOption = channels.map(({ id, name }, idx) => {
+    return (
+      <Form.Option key={`id-${id}${name}${idx}`} value={id}>
+        {name}
+      </Form.Option>
+    );
+  });
+  channelsOption.unshift(
+    <option value="" disabled selected hidden>
+      select a value
+    </option>
+  );
+  return channelsOption;
 };

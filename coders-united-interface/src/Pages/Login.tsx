@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { Button } from "../Components/UI/Button";
 import { loginUser } from "../Context/Authentication/action";
 import { useAuthDispatch } from "../Context/Authentication/AuthContext";
-import { Form } from "../Components/UI/Form";
+import Form from "../Components/UI/Form";
 
 export const Login = () => {
   const [email, setEmail] = useState("");
