@@ -24,20 +24,6 @@ export const SendMessageForm = () => {
     return <p>Something went wrong</p>;
   }
 
-  const channelsOption = channels.map(({ id, name }, idx) => {
-    return (
-      <Form.Option key={`id-${id}${name}${idx}`} value={id}>
-        {name}
-      </Form.Option>
-    );
-  });
-
-  channelsOption.unshift(
-    <option value="" disabled selected hidden>
-      select food
-    </option>
-  );
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     await sendMessage({
@@ -59,8 +45,8 @@ export const SendMessageForm = () => {
     setMessage(e.target.value);
   };
 
-  const onSelectedChannelChangeHandler = (e) => {
-    setSelectedChannel(e.target.value);
+  const onSelectedChannelChangeHandler = ({ value }) => {
+    setSelectedChannel(value);
   };
 
   return (
@@ -78,27 +64,17 @@ export const SendMessageForm = () => {
       </Form.Group>
       <Form.Group>
         <Form.Label htmlFor="channel">Select the channel</Form.Label>
-        <Form.Select id="channel" onChange={onSelectedChannelChangeHandler}>
-          {getChannelOptions(channels)}
-        </Form.Select>
+        <Form.Select
+          options={getChannelOptions(channels)}
+          onChange={onSelectedChannelChangeHandler}
+        />
       </Form.Group>
       {!sending ? <Button type="submit">Send Message</Button> : <p>Sending</p>}
     </Form>
   );
 };
 
-const getChannelOptions = (channels) => {
-  const channelsOption = channels.map(({ id, name }, idx) => {
-    return (
-      <Form.Option key={`id-${id}${name}${idx}`} value={id}>
-        {name}
-      </Form.Option>
-    );
+const getChannelOptions = (channels) =>
+  channels.map(({ id, name }) => {
+    return { value: id, label: name };
   });
-  channelsOption.unshift(
-    <option value="" disabled selected hidden>
-      select a value
-    </option>
-  );
-  return channelsOption;
-};

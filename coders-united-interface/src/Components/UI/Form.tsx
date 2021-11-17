@@ -1,4 +1,5 @@
 import styles from "./Form.module.css";
+import Select from "react-select";
 export default function Form({ children, className = "", ...props }) {
   return (
     <div className={`${styles["form-container"]}`}>
@@ -31,14 +32,40 @@ Form.Title = ({ children, ...props }) => (
   </p>
 );
 
-Form.Select = ({ children, ...props }) => (
-  <select className={styles["form-select"]} {...props}>
-    {children}
-  </select>
-);
+Form.Select = ({ options, ...props }) => {
+  return <Select options={options} styles={getSelectStyles()} {...props} />;
+};
 
-Form.Option = ({ children, ...props }) => (
-  <option className={styles["form-option"]} {...props}>
-    {children}
-  </option>
-);
+const getSelectStyles = () => ({
+  control: (base, state) => ({
+    ...base,
+    background: "#272934",
+    borderColor: "#272934",
+    borderRadius: "10px",
+    padding: "5px",
+  }),
+  menu: (base) => ({
+    ...base,
+    background: "#272934",
+    color: "#fff",
+  }),
+  option: (base) => ({
+    ...base,
+    color: "#fff",
+    backgroundColor: "#272934",
+    fontSize: "20px",
+    "&:hover": {
+      backgroundColor: "#36393f",
+    },
+  }),
+  placeholder: (base) => ({ ...base, fontSize: "20px" }),
+  menuList: (base) => ({
+    ...base,
+    borderRadius: "10px",
+  }),
+  singleValue: (base, state) => ({
+    ...base,
+    color: "#fff",
+    fontSize: "20px",
+  }),
+});
