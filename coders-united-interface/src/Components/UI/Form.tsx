@@ -37,12 +37,15 @@ Form.Select = ({ options, ...props }) => {
 };
 
 const getSelectStyles = () => ({
-  control: (base, state) => ({
+  control: (base) => ({
     ...base,
     background: "#272934",
     borderColor: "#272934",
     borderRadius: "10px",
     padding: "5px",
+    "&:hover": {
+      borderColor: "#272934",
+    },
   }),
   menu: (base) => ({
     ...base,

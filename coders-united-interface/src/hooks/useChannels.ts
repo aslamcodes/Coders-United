@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useAuthContext } from "../Context/Authentication/AuthContext";
-import { useAxiosWithCallback } from "./useAxiosWithCallback";
+import useAxiosWithCallback from "./useAxiosWithCallback";
 
 export default function useChannels() {
   const { isLoading, fetchData: fetch, error } = useAxiosWithCallback();
