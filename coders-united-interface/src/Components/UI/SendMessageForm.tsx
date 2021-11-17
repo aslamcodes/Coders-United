@@ -1,14 +1,16 @@
 import { useState } from "react";
+
 import { useAuthContext } from "../../Context/Authentication/AuthContext";
-import { useAxiosWithCallback } from "../../hooks/useAxiosWithCallback";
+import useAxiosWithCallback from "../../hooks/useAxiosWithCallback";
 import useChannels from "../../hooks/useChannels";
+import { Alert } from "../Helpers/Alert";
+
+import { Loader } from "../Helpers/Spinners";
 import { Button } from "./Button";
 import Form from "./Form";
 
 export const SendMessageForm = () => {
-  const { isLoading, channels, error } = useChannels();
-  const [message, setMessage] = useState("");
-  const [selectedChannel, setSelectedChannel] = useState("");
+  const { isLoading, channels, error: channelError } = useChannels();
   const {
     isLoading: sending,
     error: sendError,
@@ -16,12 +18,14 @@ export const SendMessageForm = () => {
   } = useAxiosWithCallback();
   const { user } = useAuthContext();
 
+  const [message, setMessage] = useState("");
+  const [selectedChannel, setSelectedChannel] = useState("");
   if (isLoading) {
     return <p>Loading</p>;
   }
 
-  if (error) {
-    return <p>Something went wrong</p>;
+  if (channelError) {
+    return <Alert variant="error" message="Something went wrong" />;
   }
 
   const handleSubmit = async (e) => {
@@ -69,7 +73,12 @@ export const SendMessageForm = () => {
           onChange={onSelectedChannelChangeHandler}
         />
       </Form.Group>
-      {!sending ? <Button type="submit">Send Message</Button> : <p>Sending</p>}
+      {
+        <Button type="submit" disabled={sending}>
+          {!sending ? "Send" : <Loader />}
+        </Button>
+      }
+      <Loader />
     </Form>
   );
 };

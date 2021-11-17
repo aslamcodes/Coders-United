@@ -1,7 +1,7 @@
 import { useEffect, useState, useCallback } from "react";
 import axios, { AxiosRequestConfig } from "axios";
 
-export function useAxiosWithCallback() {
+export default function useAxiosWithCallback() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 

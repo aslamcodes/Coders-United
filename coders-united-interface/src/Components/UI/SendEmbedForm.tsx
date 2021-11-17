@@ -1,6 +1,6 @@
 import React, { useState, useReducer } from "react";
 import { useAuthContext } from "../../Context/Authentication/AuthContext";
-import { useAxiosWithCallback } from "../../hooks/useAxiosWithCallback";
+import useAxiosWithCallback from "../../hooks/useAxiosWithCallback";
 import useChannels from "../../hooks/useChannels";
 
 const embedInitialState = {
