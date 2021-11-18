@@ -4,6 +4,7 @@ import { useAuthContext } from "../../Context/Authentication/AuthContext";
 import useAxiosWithCallback from "../../hooks/useAxiosWithCallback";
 import useChannels from "../../hooks/useChannels";
 import { Alert } from "../Helpers/Alert";
+import { Container } from "../Helpers/Container";
 
 import { Loader } from "../Helpers/Spinners";
 import { Button } from "./Button";
@@ -20,9 +21,6 @@ export const SendMessageForm = () => {
 
   const [message, setMessage] = useState("");
   const [selectedChannel, setSelectedChannel] = useState("");
-  if (isLoading) {
-    return <p>Loading</p>;
-  }
 
   if (channelError) {
     return <Alert variant="error" message="Something went wrong" />;
@@ -74,11 +72,10 @@ export const SendMessageForm = () => {
         />
       </Form.Group>
       {
-        <Button type="submit" disabled={sending}>
-          {!sending ? "Send" : <Loader />}
+        <Button type="submit" disabled={sending || isLoading} enableLoading>
+          Send
         </Button>
       }
-      <Loader />
     </Form>
   );
 };
