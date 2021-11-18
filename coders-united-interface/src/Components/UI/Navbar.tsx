@@ -1,11 +1,15 @@
 import React from "react";
-import { useLocation, Link } from "react-router-dom";
-import { useAuthContext } from "../../Context/Authentication/AuthContext";
+import { Link } from "react-router-dom";
+import { logout } from "../../Context/Authentication/action";
+import {
+  useAuthContext,
+  useAuthDispatch,
+} from "../../Context/Authentication/AuthContext";
 import { Button } from "./Button";
 import styles from "./Navbar.module.css";
 export const Navbar = () => {
   const { user } = useAuthContext();
-  const { pathname } = useLocation();
+  const dispatch = useAuthDispatch();
 
   return (
     <header>
@@ -21,10 +25,17 @@ export const Navbar = () => {
         <div className={styles["nav-actions"]}>
           {user ? (
             user.isAdmin ? (
-              <Link to="admin">
-                <Button variant="secondary">Admin Actions</Button>
-              </Link>
-            ) : null
+              <>
+                <Link to="admin">
+                  <Button variant="secondary">Admin Actions</Button>
+                </Link>
+                <Button variant="secondary" onClick={() => logout(dispatch)}>
+                  Logout
+                </Button>
+              </>
+            ) : (
+              <Button>Logout</Button>
+            )
           ) : (
             <Link to="/login">
               <Button variant="secondary">Login</Button>
