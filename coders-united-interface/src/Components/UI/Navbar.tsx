@@ -34,7 +34,9 @@ export const Navbar = () => {
                 </Button>
               </>
             ) : (
-              <Button>Logout</Button>
+              <Button variant="secondary" onClick={() => logout(dispatch)}>
+                Logout
+              </Button>
             )
           ) : (
             <Link to="/login">
