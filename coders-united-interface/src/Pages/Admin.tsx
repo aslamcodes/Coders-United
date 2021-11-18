@@ -22,6 +22,12 @@ const ADMINPAGECARDS = [
     image: "/icons/roles.svg",
     desc: "Make the members get roles interactively",
   },
+  {
+    href: "/send-file",
+    title: "Send a File",
+    image: "/icons/files.svg",
+    desc: "Send's file to a particular channel",
+  },
 ];
 export const Admin = () => {
   const { pathname } = useLocation();
