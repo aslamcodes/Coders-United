@@ -2,6 +2,7 @@ require("dotenv").config();
 require("colors");
 const path = require("path");
 const express = require("express");
+const fileUpload = require("express-fileupload");
 const { config_bot } = require("./config/bot-config");
 const { Client, Intents } = require("discord.js");
 const { channelRouter } = require("./routes/channelRoutes");
@@ -13,6 +14,7 @@ const client = new Client({
     Intents.FLAGS.GUILDS,
     Intents.FLAGS.GUILD_MESSAGES,
     Intents.FLAGS.GUILD_MEMBERS,
+    Intents.FLAGS.GUILD_VOICE_STATES,
   ],
 });
 
@@ -26,7 +28,7 @@ const app = express();
 
 app.use(express.static(path.resolve(__dirname, "./public")));
 app.use(express.json());
-
+app.use(fileUpload());
 app.use("/channels", channelRouter);
 app.use("/users", userRouter);
 
