@@ -36,6 +36,10 @@ Form.Select = ({ options, ...props }) => {
   return <Select options={options} styles={getSelectStyles()} {...props} />;
 };
 
+Form.FileSelect = ({ ...props }) => {
+  return <input type="file" className={styles["form-file-input"]} {...props} />;
+};
+
 const getSelectStyles = () => ({
   control: (base) => ({
     ...base,
