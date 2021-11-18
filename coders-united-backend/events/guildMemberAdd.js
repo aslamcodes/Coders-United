@@ -3,15 +3,17 @@ const Discord = require("discord.js");
 module.exports = {
   name: "guildMemberAdd",
   async execute(interaction) {
-    const exampleEmbed = new Discord.MessageEmbed()
+    const welcomeEmbed = new Discord.MessageEmbed()
       .setColor("#0099ff")
-      .setTitle(
-        `Welcome ${interaction.user.username}#${interaction.user.discriminator}`
-      )
+      .setTitle("Welcome to the Coders United Discord!")
       .setDescription("Have a great time here!");
-
-    interaction.guild.channels.cache
-      .get("859384213349728291")
-      .send({ embeds: [exampleEmbed] });
+    const channel = await interaction.guild.channels.cache.get(
+      "910011714580398123"
+    );
+    channel.sendTyping();
+    await channel.send({
+      content: `Welcome <@${interaction.user.id}>`,
+      embeds: [welcomeEmbed],
+    });
   },
 };
