@@ -16,6 +16,12 @@ const ADMINPAGECARDS = [
     image: "/icons/embed.svg",
     desc: "Send embeds to the server",
   },
+  {
+    href: "/roles",
+    title: "Roles",
+    image: "/icons/roles.svg",
+    desc: "Make the members get roles interactively",
+  },
 ];
 export const Admin = () => {
   const { pathname } = useLocation();
