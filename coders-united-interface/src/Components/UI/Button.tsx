@@ -1,4 +1,5 @@
 import React from "react";
+import { Loader } from "../Helpers/Spinners";
 import styles from "./Button.module.css";
 
 const variants = {
@@ -12,7 +13,13 @@ const variants = {
   },
 };
 
-export const Button = ({ children, variant = "primary", ...props }) => {
+export const Button = ({
+  children,
+  variant = "primary",
+  enableLoading = false,
+  disabled = false,
+  ...props
+}) => {
   function MouseOver(event) {
     event.target.style.background = "red";
   }
@@ -27,8 +34,15 @@ export const Button = ({ children, variant = "primary", ...props }) => {
         ...variants[variant],
       }}
       className={styles.button}
+      disabled={disabled}
     >
-      {children}
+      {enableLoading && disabled ? (
+        <div className={styles.loading}>
+          <Loader />
+        </div>
+      ) : (
+        children
+      )}
     </button>
   );
 };
