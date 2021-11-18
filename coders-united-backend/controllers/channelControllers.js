@@ -1,3 +1,5 @@
+const fs = require("fs");
+
 const Channel = require("../models/Channel");
 const asyncHandler = require("express-async-handler");
 // @desc Fetch all channels
@@ -24,7 +26,27 @@ const sendMessageToChannel = asyncHandler(async (req, res) => {
 // @route POST /file-upload
 // @access private
 // @param messageObject:{message, file}, channelId:string
-const uploadFileToChannel = asyncHandler(async (req, res) => {});
+const uploadFileToChannel = asyncHandler(async (req, res) => {
+  if (req.files === null) {
+    return res.status(400).json({ msg: "No file uploaded" });
+  }
+  const file = req.files.file;
+  const { message, channelId } = req.body;
+
+  file.mv(`./coders-united-backend/data/uploads/${file.name}`, (err) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).send(err);
+    }
+    const client = require("..");
+    const channel = client.channels.cache.get(channelId);
+    channel.send({
+      content: message,
+      files: [`./coders-united-backend/data/uploads/${file.name}`],
+    });
+    res.json({ fileName: file.name });
+  });
+});
 
 module.exports = {
   getChannels,
