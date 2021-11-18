@@ -8,7 +8,7 @@ const getChannels = asyncHandler(async (req, res) => {
   res.json(channels);
 });
 
-// @desc Fetch all channels
+// @desc Send a message to a channel
 // @route POST /channels
 // @access private
 // @param message:string, channelId:string
@@ -20,7 +20,14 @@ const sendMessageToChannel = asyncHandler(async (req, res) => {
   res.send("Posting a Message");
 });
 
+// @desc Upload a file to a channel
+// @route POST /file-upload
+// @access private
+// @param messageObject:{message, file}, channelId:string
+const uploadFileToChannel = asyncHandler(async (req, res) => {});
+
 module.exports = {
   getChannels,
   sendMessageToChannel,
+  uploadFileToChannel,
 };
