@@ -2,9 +2,14 @@
   background-color: #36393f;
   display: flex;
   flex-direction: column;
-  padding: 20px 30px;
+  justify-content: flex-start;
+  padding: 20px;
   border-radius: 10px;
   transition: all 0.3s ease-in-out;
+}
+.card > * {
+  margin: 0;
+  padding: 0;
 }
 
 .card .title {
@@ -13,7 +18,15 @@
   font-weight: bold;
 }
 
+.card .desc {
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: normal;
+}
+
 .card img {
-  width: 80%;
+  width: 70%;
+  transform: scale(1.2);
   margin: 0 auto;
+  /* background-color: yellow; */
 }

@@ -6,7 +6,7 @@ export const Card = ({ title, icon, desc: description }) => {
       <img src={icon} alt={title} />
       <div>
         <p className={styles.title}>{title}</p>
-        <p>{description}</p>
+        <p className={styles.desc}>{description}</p>
       </div>
     </div>
   );
