@@ -80,7 +80,7 @@ export const SendMessageForm = () => {
   );
 };
 
-const getChannelOptions = (channels) =>
+export const getChannelOptions = (channels) =>
   channels.map(({ id, name }) => {
     return { value: id, label: name };
   });
