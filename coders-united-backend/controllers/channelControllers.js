@@ -48,8 +48,15 @@ const uploadFileToChannel = asyncHandler(async (req, res) => {
   });
 });
 
+// @desc Send a menu for users to pick roles
+// @route POST /role-menu
+// @access private
+// @param
+const sendRoleSelectMenu = asyncHandler(async (req, res) => {});
+
 module.exports = {
   getChannels,
   sendMessageToChannel,
   uploadFileToChannel,
+  sendRoleSelectMenu,
 };
