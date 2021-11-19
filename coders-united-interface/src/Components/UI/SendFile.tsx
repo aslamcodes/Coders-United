@@ -5,7 +5,6 @@ import useChannels from "../../hooks/useChannels";
 import { Button } from "./Button";
 import Form from "./Form";
 import { getChannelOptions } from "./SendMessageForm";
-
 export const SendFile = () => {
   const [file, setFile] = useState(null);
   const [message, setMessage] = useState("");
@@ -58,7 +57,10 @@ export const SendFile = () => {
       </Form.Group>
       <Form.Group>
         <Form.Label>Select a file from your pc</Form.Label>
-        <Form.FileSelect onChange={onFileChangeHandler} />
+        <Form.FileSelect
+          title={file?.name || "Upload file"}
+          onChange={onFileChangeHandler}
+        />
       </Form.Group>
       <Form.Group>
         <Button type="submit">Send</Button>
