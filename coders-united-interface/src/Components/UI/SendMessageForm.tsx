@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useAuthContext } from "../../Context/Authentication/AuthContext";
 import useAxiosWithCallback from "../../hooks/useAxiosWithCallback";
 import useChannels from "../../hooks/useChannels";
+import { getOptionsFor } from "../../utils/utils";
 import { Alert } from "../Helpers/Alert";
 import { Container } from "../Helpers/Container";
 
@@ -67,7 +68,7 @@ export const SendMessageForm = () => {
       <Form.Group>
         <Form.Label htmlFor="channel">Select the channel</Form.Label>
         <Form.Select
-          options={getChannelOptions(channels)}
+          options={getOptionsFor(channels)}
           onChange={onSelectedChannelChangeHandler}
         />
       </Form.Group>
@@ -79,8 +80,3 @@ export const SendMessageForm = () => {
     </Form>
   );
 };
-
-export const getChannelOptions = (channels) =>
-  channels.map(({ id, name }) => {
-    return { value: id, label: name };
-  });

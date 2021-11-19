@@ -4,7 +4,7 @@ import { useAuthContext } from "../../Context/Authentication/AuthContext";
 import useChannels from "../../hooks/useChannels";
 import { Button } from "./Button";
 import Form from "./Form";
-import { getChannelOptions } from "./SendMessageForm";
+import { getOptionsFor } from "../../utils/utils";
 export const SendFile = () => {
   const [file, setFile] = useState(null);
   const [message, setMessage] = useState("");
@@ -51,7 +51,7 @@ export const SendFile = () => {
       <Form.Group>
         <Form.Label>Select a channel</Form.Label>
         <Form.Select
-          options={getChannelOptions(channels)}
+          options={getOptionsFor(channels)}
           onChange={onSelectedChannelChangeHandler}
         />
       </Form.Group>
