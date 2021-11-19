@@ -6,33 +6,36 @@ const asyncHandler = require("express-async-handler");
 // @access private
 // @param embed:object, channelId:string
 const sendEmbedToChannel = asyncHandler(async (req, res) => {
-  const {  channelId, embed } = req.body;
-  const client = require("..");
-  const channel = client.channels.cache.get(channelId);
-
-  const Embed = new MessageEmbed()
-    .setColor("#0099ff")
-    .setTitle(embed.title)
-    .setURL(embed.url)
-    .setAuthor(
-      embed.authorName,
-      "https://i.imgur.com/AfFp7pu.png",
-      embed.authorUrl
-    )
-    .setDescription(embed.description)
-    .setThumbnail("https://i.imgur.com/AfFp7pu.png")
-    .addFields(
-      { name: "Regular field title", value: "Some value here" },
-      { name: "\u200B", value: "\u200B" },
-      { name: "Inline field title", value: "Some value here", inline: true },
-      { name: "Inline field title", value: "Some value here", inline: true }
-    )
-    .addField("Inline field title", "Some value here", true)
-    .setImage("https://i.imgur.com/AfFp7pu.png")
-    .setTimestamp()
-    .setFooter("Some footer text here", "https://i.imgur.com/AfFp7pu.png");
+  const { channelId, embed } = req.body;
+  const embedData = JSON.parse(embed);
+  const file = req.files.file;
   try {
-    await channel.send({ embeds: [Embed] });
+    const client = require("..");
+    const channel = client.channels.cache.get(channelId);
+
+    file.mv(`./coders-united-backend/data/uploads/${file.name}`, (err) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).send(err);
+      }
+    });
+    const Embed = new MessageEmbed()
+      .setColor("#0099ff")
+      .setTitle(embedData.title)
+      .setURL(embedData.url)
+      .setThumbnail(`attachment://${file.name}`)
+      .setAuthor(embedData.authorName)
+      .setDescription(embedData.description);
+
+    await channel.send({
+      embeds: [Embed],
+      files: [
+        {
+          attachment: `./coders-united-backend/data/uploads/${file.name}`,
+          name: file.name,
+        },
+      ],
+    });
   } catch (error) {
     throw new Error(error);
   }
