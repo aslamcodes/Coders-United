@@ -1,5 +1,6 @@
 import styles from "./Form.module.css";
 import Select from "react-select";
+import { FaFileUpload } from "react-icons/fa";
 export default function Form({ children, className = "", ...props }) {
   return (
     <div className={`${styles["form-container"]}`}>
@@ -36,8 +37,16 @@ Form.Select = ({ options, ...props }) => {
   return <Select options={options} styles={getSelectStyles()} {...props} />;
 };
 
-Form.FileSelect = ({ ...props }) => {
-  return <input type="file" className={styles["form-file-input"]} {...props} />;
+Form.FileSelect = ({ title, ...props }) => {
+  return (
+    <div className={styles["form-file-input"]}>
+      <label htmlFor="file-input">
+        <p>{title}</p>
+        <FaFileUpload />
+      </label>
+      <input id="file-input" type="file" {...props} />
+    </div>
+  );
 };
 
 const getSelectStyles = () => ({
