@@ -1,5 +1,6 @@
 const express = require("express");
 const {
+  getRoles,
   getChannels,
   sendMessageToChannel,
   uploadFileToChannel,
@@ -14,7 +15,10 @@ const router = express.Router();
 router.route("/").get(protect, getChannels).post(protect, sendMessageToChannel);
 router.route("/embed").post(protect, sendEmbedToChannel);
 router.route("/file-upload").post(protect, uploadFileToChannel);
-router.route("/role-menu").post(protect, sendRoleSelectMenu);
+router
+  .route("/role-menu")
+  .get(protect, getRoles)
+  .post(protect, sendRoleSelectMenu);
 module.exports = {
   channelRouter: router,
 };
