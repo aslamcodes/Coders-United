@@ -7,6 +7,35 @@ module.exports = {
       `${interaction.user.tag} in #${interaction.channel.name} triggered an interaction.`
     );
 
+    if (interaction.isSelectMenu) {
+      if (interaction.customId === "select_roles_dept") {
+        const { member, values } = interaction;
+
+        // Get the selected role
+        const selectedRole = interaction.guild.roles.cache.find(
+          (role) => role.id === values[0]
+        );
+
+        // Get the non selected roles
+        const options = interaction.message.components
+          .find((c) => c.type === "ACTION_ROW")
+          .components.find((c) => c.customId === "select_roles_dept")
+          .options.filter((option) => option.value !== values[0].id);
+
+        // Remove the other roles that the user already has
+        options.forEach((option) => {
+          member.roles.remove(
+            interaction.guild.roles.cache.find(
+              (role) => role.id === option.value
+            )
+          );
+        });
+
+        member.roles.add(selectedRole);
+      }
+
+      return;
+    }
     if (!interaction.isCommand()) return;
 
     const command = client.commands.get(interaction.commandName);

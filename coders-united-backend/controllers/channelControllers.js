@@ -1,7 +1,8 @@
 const fs = require("fs");
-
+const { MessageActionRow, MessageSelectMenu } = require("discord.js");
 const Channel = require("../models/Channel");
 const asyncHandler = require("express-async-handler");
+const Role = require("../models/Roles");
 // @desc Fetch all channels
 // @route GET /channels
 // @access private
@@ -48,8 +49,41 @@ const uploadFileToChannel = asyncHandler(async (req, res) => {
   });
 });
 
+// @desc Send a menu for users to pick roles
+// @route POST /role-menu
+// @access private
+// @param
+const sendRoleSelectMenu = asyncHandler(async (req, res) => {
+  const { message, roles, channelId } = req.body;
+  const client = require("..");
+  const channel = client.channels.cache.get(channelId);
+  client.roleOptions = roles;
+  const row = new MessageActionRow().addComponents(
+    new MessageSelectMenu()
+      .setCustomId("select_roles_dept")
+      .setPlaceholder("@everyone")
+      .addOptions(roles)
+  );
+
+  await channel.send({
+    content: message,
+    components: [row],
+  });
+});
+
+// @desc Fetch roles from the server
+// @route get /role-menu
+// @access private
+// @param
+const getRoles = asyncHandler(async (req, res) => {
+  const roles = await Role.find({});
+  res.json(roles);
+});
+
 module.exports = {
+  getRoles,
   getChannels,
   sendMessageToChannel,
   uploadFileToChannel,
+  sendRoleSelectMenu,
 };

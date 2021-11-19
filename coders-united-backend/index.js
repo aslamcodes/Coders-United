@@ -10,14 +10,8 @@ const { userRouter } = require("./routes/userRoutes");
 const { config_db } = require("./config/db-config");
 const { errorHandler, notFound } = require("./middleware/errorMiddleware");
 const client = new Client({
-  intents: [
-    Intents.FLAGS.GUILDS,
-    Intents.FLAGS.GUILD_MESSAGES,
-    Intents.FLAGS.GUILD_MEMBERS,
-    Intents.FLAGS.GUILD_VOICE_STATES,
-  ],
+  intents: Object.values(Intents.FLAGS),
 });
-
 const Bot_Token = process.env.TOKEN;
 const DB_URI = process.env.MONGO_URI;
 

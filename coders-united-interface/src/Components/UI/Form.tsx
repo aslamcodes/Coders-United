@@ -37,6 +37,10 @@ Form.Select = ({ options, ...props }) => {
   return <Select options={options} styles={getSelectStyles()} {...props} />;
 };
 
+Form.TextArea = ({ ...props }) => {
+  return <textarea className={styles["form-textarea"]} {...props}></textarea>;
+};
+
 Form.FileSelect = ({ title, ...props }) => {
   return (
     <div className={styles["form-file-input"]}>
@@ -83,5 +87,15 @@ const getSelectStyles = () => ({
     ...base,
     color: "#fff",
     fontSize: "20px",
+  }),
+  multiValue: (base, state) => ({
+    ...base,
+    fontSize: "20px",
+    backgroundColor: "#36393F",
+    color: "#fff",
+  }),
+  multiValueLabel: (base, state) => ({
+    ...base,
+    color: "#fff",
   }),
 });
