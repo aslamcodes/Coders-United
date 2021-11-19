@@ -58,7 +58,13 @@ export const SendFile = () => {
       <Form.Group>
         <Form.Label>Select a file from your pc</Form.Label>
         <Form.FileSelect
-          title={file?.name || "Upload file"}
+          title={
+            file
+              ? file?.name.length > 40
+                ? file.name.slice(0, 40) + "..."
+                : file.name
+              : "Upload file"
+          }
           onChange={onFileChangeHandler}
         />
       </Form.Group>
