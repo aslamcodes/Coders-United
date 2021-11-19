@@ -27,6 +27,13 @@ Form.Label = ({ children, ...props }) => (
   </label>
 );
 
+Form.ColorInput = ({ ...props }) => (
+  <div className={styles["form-color-input"]}>
+    <label htmlFor="color_input"></label>
+    <input type="color" id="color_input" />
+  </div>
+);
+
 Form.Title = ({ children, ...props }) => (
   <p className={styles["form-title"]} {...props}>
     {children}
