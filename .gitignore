@@ -1,5 +1,6 @@
 coders-united-backend/node_modules
 coders-united-backend/rest.http
 coders-united-interface/node_modules
+coders-united-interface/build
 .env
 node_modules
