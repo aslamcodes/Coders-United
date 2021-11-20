@@ -12,7 +12,7 @@
     "data:seed": "node coders-united-backend/seeder",
     "data:destroy": "node coders-united-backend/seeder -d",
     "post:install": "npm i && (cd coders-united-interface && npm i ) && (cd .. && cd coders-united-backend && npm i )",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install && npm install --prefix coders-united-interface && npm run build --prefix coders-united-interface"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix coders-united-interface && npm run build --prefix coders-united-interface"
   },
   "repository": {
     "type": "git",
@@ -28,17 +28,6 @@
     "concurrently": "^6.3.0"
   },
   "dependencies": {
-    "dotenv": "^10.0.0",
-    "@discordjs/builders": "^0.8.2",
-    "@discordjs/rest": "^0.1.0-canary.0",
-    "bcryptjs": "^2.4.3",
-    "discord-api-types": "^0.24.0",
-    "discord.js": "^13.3.1",
-    "express": "^4.17.1",
-    "express-async-handler": "^1.2.0",
-    "express-fileupload": "^1.2.1",
-    "jsonwebtoken": "^8.5.1",
-    "mongoose": "^6.0.12",
-    "colors": "^1.4.0"
+    "dotenv": "^10.0.0"
   }
 }
