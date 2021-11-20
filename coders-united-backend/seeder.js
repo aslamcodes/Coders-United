@@ -1,5 +1,4 @@
 require("dotenv").config();
-require("colors");
 const { config_db } = require("./config/db-config");
 const users = require("./data/users");
 const User = require("./models/User");
