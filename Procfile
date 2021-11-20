@@ -1,1 +1,1 @@
-web: npm start
+web: node coders-united-backend/index.js
