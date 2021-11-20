@@ -20,22 +20,38 @@ config_db(DB_URI);
 
 const app = express();
 
-app.use(express.static(path.resolve(__dirname, "./public")));
 app.use(express.json());
 app.use(fileUpload());
+
 app.use("/channels", channelRouter);
 app.use("/users", userRouter);
-
-app.get("/", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "./public/home.html"));
-});
+if (process.env.NODE_ENV === "DEVELOPMENT") {
+  console.log("Development mode".green);
+  app.use(express.static(path.resolve(__dirname, "./public")));
+  app.get("/", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "./public/home.html"));
+  });
+} else {
+  console.log("Production mode".green);
+  app.use(
+    express.static(path.resolve(__dirname, "../coders-united-interface/build"))
+  );
+  app.get("*", (req, res) => {
+    console.log(
+      path.resolve(__dirname, "../coders-united-interface/build/index.html")
+    );
+    res.sendFile(
+      path.resolve(__dirname, "../coders-united-interface/build/index.html")
+    );
+  });
+}
 
 app.use(notFound);
 app.use(errorHandler);
 
 app.listen(process.env.PORT || 3001, () => {
   console.log(
-    `Server Listening at ${process.env.PORT || 3001} on ${
+    `Server Listening at ${process.env.PORT || 5000} on ${
       process.env.NODE_ENV
     } mode`.black.bgWhite.bold
   );

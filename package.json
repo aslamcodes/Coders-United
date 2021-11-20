@@ -4,6 +4,7 @@
   "description": "A Discord Bot for Maintaining Coders United Discord Server",
   "main": "index.js",
   "scripts": {
+    "start": "node coders-united-backend",
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "nodemon coders-united-backend",
     "interface": "npm start --prefix coders-united-interface",
