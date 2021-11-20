@@ -12,7 +12,7 @@
     "data:seed": "node coders-united-backend/seeder",
     "data:destroy": "node coders-united-backend/seeder -d",
     "post:install": "npm i && (cd coders-united-interface && npm i ) && (cd .. && cd coders-united-backend && npm i )",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix coders-united-interface && npm run build --prefix coders-united-interface"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install && npm install --prefix coders-united-interface && npm run build --prefix coders-united-interface"
   },
   "repository": {
     "type": "git",
