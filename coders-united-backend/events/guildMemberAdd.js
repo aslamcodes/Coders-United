@@ -12,7 +12,7 @@ module.exports = {
       .setImage(interaction.user.displayAvatarURL());
 
     const channel = await interaction.guild.channels.cache.get(
-      "859384213349728291"
+      "847768755286966292"
     );
     channel.sendTyping();
     await channel.send({
