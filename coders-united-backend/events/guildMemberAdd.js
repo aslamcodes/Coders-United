@@ -8,7 +8,7 @@ module.exports = {
       .setTitle("Welcome to the Coders United Discord!")
       .setDescription("Have a great time here!");
     const channel = await interaction.guild.channels.cache.get(
-      "910011714580398123"
+      "846477643058642985"
     );
     channel.sendTyping();
     await channel.send({
