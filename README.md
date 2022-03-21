@@ -59,7 +59,7 @@ This Bot can do (in Future):
 
 ## Getting Started
 
-To get a local copy of this project, Follow these simple steps
+To get a local copy of this project, Follow these simple steps.
 
 ### Prerequisites
 
